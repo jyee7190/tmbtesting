@@ -37,15 +37,20 @@
 }
 html {
   scroll-behavior: smooth;
+  /* Scroll snap — stops at each section like Infinity Nikki */
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100%;
 }
 
 body {
   background: var(--black);
   color: var(--white-dim);
   font-family: var(--font-body);
-  font-size: 18px;
-  line-height: 1.7;
+  font-size: 20px; /* bumped from 18px for readability */
+  line-height: 1.75;
   overflow-x: hidden;
+  height: 100%;
 }
 
 img {
@@ -101,59 +106,35 @@ a:hover {
 }
 
 /* ============================================================
-   SEAMLESS SECTION BACKGROUNDS
-   Each section uses a gradient that starts/ends at a shared
-   color with its neighbour — no hard edges, no visible seams.
-
-   Flow:
-   Landing  → pure black
-   Home     → black → grey-deep
-   About    → grey-deep → grey-dark
-   Projects → grey-dark → grey-mid (darkest mid-page)
-   Team     → grey-mid → grey-dark
-   Contact  → grey-dark → black
-   Footer   → black
+   SECTION BACKGROUNDS
+   Using solid dark tones that step gradually — more reliable
+   than gradients for cross-browser/GitHub Pages rendering.
+   A subtle 80px gradient bridge is added via ::before on each
+   section so transitions still look blended, not hard-cut.
    ============================================================ */
 
-#home {
-  background: linear-gradient(
-    to bottom,
-    var(--black) 0%,
-    var(--grey-deep) 100%
-  );
-}
+#home      { background: #0a0a0a; }
+#about     { background: #111111; }
+#projects  { background: #161616; }
+#team      { background: #111111; }
+#marquee-section { background: #0d0d0d; }
+#contact   { background: #0a0a0a; }
 
-#about {
-  background: linear-gradient(
-    to bottom,
-    var(--grey-deep) 0%,
-    var(--grey-dark) 100%
-  );
-}
-
-#projects {
-  background: linear-gradient(
-    to bottom,
-    var(--grey-dark) 0%,
-    var(--grey-mid) 50%,
-    var(--grey-dark) 100%
-  );
-}
-
-#team {
-  background: linear-gradient(
-    to bottom,
-    var(--grey-dark) 0%,
-    var(--grey-deep) 100%
-  );
-}
-
-#contact {
-  background: linear-gradient(
-    to bottom,
-    var(--grey-deep) 0%,
-    var(--black) 100%
-  );
+/* Top-fade bridge — each section fades in from the colour above it */
+#about::before,
+#projects::before,
+#team::before,
+#marquee-section::before,
+#contact::before {
+  content: '';
+  display: block;
+  height: 80px;
+  margin-top: -80px;
+  background: inherit;
+  /* mask: transparent top → section colour bottom */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
+  pointer-events: none;
 }
 
 /* ============================================================
@@ -167,7 +148,7 @@ a:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: var(--black);
+  background: #000000; /* pure black, no gradient */
   text-align: center;
   transition:
     opacity 0.8s ease,
@@ -180,17 +161,7 @@ a:hover {
   pointer-events: none;
 }
 
-#landing::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse at center,
-    transparent 30%,
-    rgba(0, 0, 0, 0.8) 100%
-  );
-  pointer-events: none;
-}
+/* removed ::before radial gradient — pure black background only */
 
 .landing-inner {
   position: relative;
@@ -407,11 +378,19 @@ section {
   padding: 6rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  /* Scroll snap — each section is a snap point */
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* Sections that need full-width bg need special treatment */
 #projects,
-#contact {
+#contact,
+#marquee-section {
   max-width: none;
   padding: 6rem 2rem;
 }
@@ -419,6 +398,14 @@ section {
 #contact .inner {
   max-width: 1200px;
   margin: 0 auto;
+}
+
+/* Marquee section also snaps */
+#marquee-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: auto; /* marquee is short — don't force 100vh */
+  padding: 4rem 0;
 }
 
 .section-header {
@@ -1051,6 +1038,7 @@ footer {
   border-top: 1px solid var(--border-dim);
   padding: 2rem;
   text-align: center;
+  scroll-snap-align: start;
 }
 footer p {
   font-family: var(--font-heading);
@@ -1607,4 +1595,98 @@ footer p {
   .nav-item:hover .nav-dropdown {
     transform: translateX(0) translateY(0);
   }
+}
+
+/* ============================================================
+   MARQUEE — Infinite scrolling software/tool logos
+   ============================================================ */
+#marquee-section {
+  overflow: hidden;
+  border-top: 1px solid var(--border-dim);
+  border-bottom: 1px solid var(--border-dim);
+}
+
+.marquee-label {
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: .7rem;
+  letter-spacing: .3rem;
+  text-transform: uppercase;
+  color: var(--grey-muted);
+  margin-bottom: 2rem;
+}
+
+.marquee-track-wrap {
+  /* mask fades on left and right so logos appear/disappear smoothly */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 12%,
+    black 88%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 12%,
+    black 88%,
+    transparent 100%
+  );
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 3rem;
+  /* width: two full sets of logos side-by-side so the loop is seamless */
+  width: max-content;
+  animation: marqueeScroll 28s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused; /* pause on hover */
+}
+
+@keyframes marqueeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Each logo item */
+.marquee-item {
+  flex: 0 0 120px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  border: 1px solid var(--border-dim);
+  padding: .75rem 1rem;
+  background: rgba(255,255,255,.02);
+  transition: border-color .2s, background .2s;
+  white-space: nowrap;
+}
+.marquee-item:hover {
+  border-color: var(--border-glow);
+  background: rgba(255,255,255,.05);
+}
+
+.marquee-item img {
+  max-height: 30px;
+  max-width: 80px;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* makes logos white to fit B&W theme */
+  opacity: .6;
+  transition: opacity .2s;
+}
+.marquee-item:hover img { opacity: 1; }
+
+/* Text fallback when no image is provided */
+.marquee-item-name {
+  font-family: var(--font-heading);
+  font-size: .6rem;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  color: var(--grey-muted);
 }
