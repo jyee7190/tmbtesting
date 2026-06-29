@@ -1682,11 +1682,4 @@ footer p {
 }
 .marquee-item:hover img { opacity: 1; }
 
-/* Text fallback when no image is provided */
-.marquee-item-name {
-  font-family: var(--font-heading);
-  font-size: .6rem;
-  letter-spacing: .1rem;
-  text-transform: uppercase;
-  color: var(--grey-muted);
-}
+
