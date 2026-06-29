@@ -187,15 +187,7 @@
       }
 
       /* ── EXHIBITION SECTION ── */
-      .proj-exhibition-bg {
-        background: linear-gradient(
-          to bottom,
-          var(--grey-dark) 0%,
-          var(--grey-mid) 50%,
-          var(--grey-dark) 100%
-        );
-        padding: 6rem 0;
-      }
+     
 
       .proj-exhibition-grid {
         display: grid;
@@ -345,7 +337,7 @@
         line-height: 1.6;
       }
       .proj-why-block li::before {
-        content: "—";
+        content: "";
         position: absolute;
         left: 0;
         color: var(--grey-border);
@@ -397,6 +389,122 @@
         max-width: 480px;
       }
 
+      /* ── SYNOPSIS ── */
+      /* Container Blueprint */
+      .chapter-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
+      }
+
+      /* Left Side: Image Showcase */
+      .image-side {
+        flex: 1;
+        min-height: 350px;
+        position: relative;
+        background: #2a2a30;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .chapter-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      .chapter-image.active {
+        opacity: 1;
+      }
+
+      /* Right Side: Navigation & Content */
+      .content-side {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      /* Tab Buttons Container */
+      .tab-container {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .tab-btn {
+        font-family: var(--font-heading);
+        font-size: 0.75rem;
+        background: #2a2a30;
+        color: #a0a0a5;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.2s ease;
+      }
+
+      .tab-btn:hover {
+        background: #3a3a42;
+        color: #fff;
+      }
+
+      .tab-btn.active {
+        background: #fff; /* Game highlight color */
+        color: black;
+      }
+
+      /* Synopsis Text Area */
+      .text-box {
+        background: #222226;
+        border-radius: 8px;
+        padding: 24px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .synopsis-content {
+        display: none;
+      }
+
+      .synopsis-content.active {
+        display: block;
+        animation: fadeIn 0.4s ease;
+      }
+
+      .synopsis-content h3 {
+        margin-bottom: 12px;
+        font-size: 1.5rem;
+        color: #fff;
+      }
+
+      .synopsis-content p {
+        color: var(--grey-muted);
+        font-size: 1rem;
+        line-height: 1.8;
+      }
+
+      /* Micro-animation for text swap */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(5px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
       /* responsive */
       @media (max-width: 768px) {
         .proj-about-grid,
@@ -407,6 +515,12 @@
         }
         .proj-hero-title {
           font-size: 4.5rem;
+        }
+        .chapter-section {
+          flex-direction: column;
+        }
+        .image-side {
+          min-height: 250px;
         }
       }
     </style>
@@ -518,6 +632,85 @@
     </div>
 
     <!-- ================================================================
+     SYNOPSIS SECTION
+     ================================================================ -->
+
+    <section class="chapter-section">
+      <div class="image-side">
+        <img
+          src="./assets/ngilai/ngilai chapter 1.jpg"
+          alt="Chapter 1 Artwork"
+          class="chapter-image active"
+          id="img-ch1"
+        />
+        <img
+          src="./assets/ngilai/ngilai chapter 2.jpg"
+          alt="Chapter 2 Artwork"
+          class="chapter-image"
+          id="img-ch2"
+        />
+        <img
+          src="./assets/ngilai/ngilai chapter 3.jpg"
+          alt="Chapter 3 Artwork"
+          class="chapter-image"
+          id="img-ch3"
+        />
+        <img
+          src="./assets/ngilai/ngilai chapter 4.jpg"
+          alt="Chapter 4 Artwork"
+          class="chapter-image"
+          id="img-ch4"
+        />
+      </div>
+
+      <div class="content-side">
+        <div class="tab-container">
+          <button class="tab-btn active" onclick="switchChapter('ch1')">
+            Ch 1
+          </button>
+          <button class="tab-btn" onclick="switchChapter('ch2')">Ch 2</button>
+          <button class="tab-btn" onclick="switchChapter('ch3')">Ch 3</button>
+          <button class="tab-btn" onclick="switchChapter('ch4')">Ch 4</button>
+        </div>
+
+        <div class="text-box">
+          <div class="synopsis-content active" id="text-ch1">
+            <h3>Chapter 1</h3>
+            <p>
+              The player wakes up with no memory and must explore the dark
+              hospital, find key items, collect scattered notes, and search for
+              a way out while strange sounds and distant laughter follow them.
+          </br>
+          </br>
+              Escape the hospital. Survive the laughter.
+            </p>
+          </div>
+
+          <div class="synopsis-content" id="text-ch2">
+            <h3>Chapter 2</h3>
+            <p>
+              TBD
+            </p>
+          </div>
+
+          <div class="synopsis-content" id="text-ch3">
+            <h3>Chapter 3</h3>
+            <p>
+              TBD
+            </p>
+          </div>
+
+          <div class="synopsis-content" id="text-ch4">
+            <h3>Chapter 4</h3>
+            <p>
+              TBD
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
      EXHIBITION — matches PDF page 3: IMINE 2.0
      ================================================================ -->
     <div class="proj-exhibition-bg">
@@ -574,10 +767,11 @@
               Exhibition 2.0</span
             >
             <p>
-              TMB Studio presented <strong>NGILAI</strong> — originally developed and conceptualized under the title Syirik — at IMINE 2.0, held at Dewan Agung
-              Tuanku Canselor (DATC), UiTM Shah Alam, Selangor on 12–14 April
-              2026. The exhibition brought together emerging entrepreneurs and
-              innovators from across the region.
+              TMB Studio presented <strong>NGILAI</strong> — originally
+              developed and conceptualized under the title Syirik — at IMINE
+              2.0, held at Dewan Agung Tuanku Canselor (DATC), UiTM Shah Alam,
+              Selangor on 12–14 April 2026. The exhibition brought together
+              emerging entrepreneurs and innovators from across the region.
             </p>
             <br />
             <p>
@@ -615,14 +809,11 @@
             </tr>
             <tr>
               <td>Pricing</td>
-              <td>
-                ~RM12 (launch discount, single player) · RM24 full price upon
-                multiplayer release
-              </td>
+              <td>TBD</td>
             </tr>
             <tr>
               <td>Startup Cost</td>
-              <td>RM 0</td>
+              <td>TBD</td>
             </tr>
             <tr>
               <td>Avg. Playtime</td>
@@ -630,7 +821,7 @@
             </tr>
             <tr>
               <td>Unique Value</td>
-              <td>Malaysian / Borneo folklore · 4th wall breaking mechanics</td>
+              <td>Local Malaysian folklore · 4th wall breaking mechanics</td>
             </tr>
             <tr>
               <td>Genre</td>
@@ -768,5 +959,30 @@
     </footer>
 
     <script src="./main.js"></script>
+
+    <!-- for switching chapters -->
+    <script>
+      function switchChapter(chapterId) {
+        // 1. Remove active class from all buttons
+        document
+          .querySelectorAll(".tab-btn")
+          .forEach((btn) => btn.classList.remove("active"));
+
+        // 2. Remove active class from all images and text boxes
+        document
+          .querySelectorAll(".chapter-image")
+          .forEach((img) => img.classList.remove("active"));
+        document
+          .querySelectorAll(".synopsis-content")
+          .forEach((text) => text.classList.remove("active"));
+
+        // 3. Find the clicked button based on the function trigger and highlight it
+        event.currentTarget.classList.add("active");
+
+        // 4. Activate the target image and text content
+        document.getElementById("img-" + chapterId).classList.add("active");
+        document.getElementById("text-" + chapterId).classList.add("active");
+      }
+    </script>
   </body>
 </html>

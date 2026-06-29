@@ -113,12 +113,24 @@ a:hover {
    section so transitions still look blended, not hard-cut.
    ============================================================ */
 
-#home      { background: #0a0a0a; }
-#about     { background: #111111; }
-#projects  { background: #161616; }
-#team      { background: #111111; }
-#marquee-section { background: #0d0d0d; }
-#contact   { background: #0a0a0a; }
+#home {
+  background: #0a0a0a;
+}
+#about {
+  background: #111111;
+}
+#projects {
+  background: #161616;
+}
+#team {
+  background: #111111;
+}
+#marquee-section {
+  background: #0d0d0d;
+}
+#contact {
+  background: #0a0a0a;
+}
 
 /* Top-fade bridge — each section fades in from the colour above it */
 #about::before,
@@ -126,7 +138,7 @@ a:hover {
 #team::before,
 #marquee-section::before,
 #contact::before {
-  content: '';
+  content: "";
   display: block;
   height: 80px;
   margin-top: -80px;
@@ -780,12 +792,6 @@ h4 {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
 }
 
 .featured-project-img {
@@ -1028,6 +1034,11 @@ h4 {
 .contact-link-item .icon {
   font-size: 1.1rem;
   color: var(--white-dim);
+}
+.contact-icon {
+  filter: invert(100%);
+  width: 20px;
+  height: 20px;
 }
 
 /* ============================================================
@@ -1606,16 +1617,6 @@ footer p {
   border-bottom: 1px solid var(--border-dim);
 }
 
-.marquee-label {
-  text-align: center;
-  font-family: var(--font-heading);
-  font-size: .7rem;
-  letter-spacing: .3rem;
-  text-transform: uppercase;
-  color: var(--grey-muted);
-  margin-bottom: 2rem;
-}
-
 .marquee-track-wrap {
   /* mask fades on left and right so logos appear/disappear smoothly */
   -webkit-mask-image: linear-gradient(
@@ -1648,37 +1649,45 @@ footer p {
 }
 
 @keyframes marqueeScroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /* Each logo item */
 .marquee-item {
   flex: 0 0 120px;
-  height: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: .4rem;
+  gap: 0.4rem;
   border: 1px solid var(--border-dim);
-  padding: .75rem 1rem;
-  background: rgba(255,255,255,.02);
-  transition: border-color .2s, background .2s;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  transition:
+    border-color 0.2s,
+    background 0.2s;
   white-space: nowrap;
+  font-family: var(--font-heading);
+  font-weight: 600;
 }
+
 .marquee-item:hover {
   border-color: var(--border-glow);
-  background: rgba(255,255,255,.05);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .marquee-item img {
-  max-height: 30px;
+  max-height: 80px;
   max-width: 80px;
   object-fit: contain;
-  opacity: .6;
-  transition: opacity .2s;
+  opacity: 0.6;
+  transition: opacity 0.2s;
 }
-.marquee-item:hover img { opacity: 1; }
-
-
+.marquee-item:hover img {
+  opacity: 1;
+}
