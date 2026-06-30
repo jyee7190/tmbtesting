@@ -394,8 +394,51 @@
         max-width: 480px;
       }
 
-      /* responsive */
+      /* ── GAMEPLAY FEATURES (3-column) ── */
+      .proj-features-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 2.5rem;
+      }
+      .proj-feature-card {
+        border: 1px solid var(--border-dim);
+        padding: 2rem 1.75rem;
+        background: rgba(255, 255, 255, 0.02);
+      }
+      .proj-feature-card h4 {
+        font-family: var(--font-heading);
+        font-size: 1rem;
+        letter-spacing: 0.05rem;
+        color: var(--pure-white);
+        margin-bottom: 0.85rem;
+      }
+      .proj-feature-card p {
+        color: var(--grey-muted);
+        font-size: 0.92rem;
+        line-height: 1.7;
+      }
+
+      /* ── UNIQUE POINT CALLOUT ── */
+      .proj-callout {
+        border-left: 2px solid var(--border-glow);
+        padding: 0.5rem 0 0.5rem 2rem;
+      }
+      .proj-callout p {
+        color: var(--grey-muted);
+        font-size: 1rem;
+        line-height: 1.85;
+      }
+
+      /* ── SOFTWARE MARQUEE (mirrors index.html) ── */
+      .proj-marquee-section {
+        overflow: hidden;
+        border-top: 1px solid var(--border-dim);
+        border-bottom: 1px solid var(--border-dim);
+        padding: 4rem 0;
+      }
+
       @media (max-width: 768px) {
+        .proj-features-grid { grid-template-columns: 1fr; }
         .proj-about-grid,
         .proj-exhibition-grid,
         .proj-why-grid {
@@ -452,7 +495,7 @@
       <div class="proj-hero-content reveal">
         <p class="proj-hero-eyebrow">TMB Studio · Current Project</p>
         <h1 class="proj-hero-title">Life<br />Gacha!</h1>
-        <p class="proj-hero-tagline">[ Tagline — TBA ]</p>
+        <p class="proj-hero-tagline">Gacha With Life As Currency</p>
         <div class="proj-hero-status">● In Development</div>
         <br />
         <a href="./index.html#projects" class="proj-hero-back"
@@ -470,7 +513,7 @@
           <!-- Left: game cover poster -->
           <div class="proj-cover-img reveal">
             <!--
-              Replace with Life Gacha! cover art:
+              Replace with Life Gacha! key art / pitch deck cover:
               <img src="./assets/lifegacha/lifegacha-cover.jpg" alt="Life Gacha! cover" />
             -->
             [ Life Gacha! — Cover / Key Art ]
@@ -484,20 +527,22 @@
                 <img src="./assets/lifegacha/lifegacha-logo.png" alt="Life Gacha!" />
               -->
               <div class="proj-title-text">Life Gacha!</div>
-              <div class="proj-title-sub">[ Tagline — TBA ]</div>
+              <div class="proj-title-sub">Turn Based · Rogue-like</div>
             </div>
 
             <p class="proj-description">
-              [ Description coming soon — replace this with the Life Gacha! game
-              description once your client provides it. ]
+              <strong>Life Gacha!</strong> is a turn-based, rogue-like game where players spend their own lifespan
+              to roll a gacha in exchange for weapons and survival. Every roll is a gamble — pulling stronger
+              items brings the player closer to victory, but also closer to death.
             </p>
             <p class="proj-description">
-              [ Add more details about the game's story, setting, and gameplay
-              here. ]
+              <strong>Dimension:</strong> 2D &nbsp;·&nbsp;
+              <strong>Resolution:</strong> 1920×1080p &nbsp;·&nbsp;
+              <strong>Platform:</strong> PC
             </p>
             <p class="proj-description">
-              [ You can also describe the tone, target audience, or any unique
-              mechanics here. ]
+              <strong>Game Engine:</strong> Unreal Engine &nbsp;·&nbsp;
+              <strong>Expected Playtime:</strong> 8–15 minutes
             </p>
           </div>
         </div>
@@ -554,17 +599,18 @@
           <!-- Right: text -->
           <div class="proj-exhibition-text reveal">
             <span class="section-label">About Our Project</span>
-            <h2>[ Exhibition Name ]</h2>
-            <span class="proj-event-name">[ Full Exhibition Name — TBA ]</span>
+            <h2>GameFest 2026</h2>
+            <span class="proj-event-name">GDG IIUM GameFest 2026 — GD GameJam Pitching</span>
             <p>
-              [ Replace this with details about the exhibition where Life Gacha!
-              was showcased — event name, dates, location, and what the team
-              presented. ]
+              TMB Studio pitched Life Gacha! at the GDG IIUM GameFest 2026, presented under the
+              GD GameJam — a 7-Day Creation Challenge. The pitch introduced the game's core
+              concept: a turn-based gacha system where the player's own life is the currency.
             </p>
             <br />
             <p>
-              [ Add more context about the team's experience at the exhibition —
-              feedback received, connections made, or milestones achieved. ]
+              Built in a tight development window, Life Gacha! stood out for its risk-reward design
+              and stylized, high-contrast visual direction — giving the judges and fellow developers
+              a clear look at the team's ability to execute a focused concept under pressure.
             </p>
           </div>
         </div>
@@ -587,38 +633,32 @@
           </thead>
           <tbody>
             <tr>
-              <td>Game Mode</td>
-              <td>[ TBA — e.g. Single Player, Multiplayer ]</td>
-            </tr>
-            <tr>
-              <td>Pricing</td>
-              <td>[ TBA ]</td>
-            </tr>
-            <tr>
-              <td>Startup Cost</td>
-              <td>[ TBA ]</td>
-            </tr>
-            <tr>
-              <td>Avg. Playtime</td>
-              <td>[ TBA ]</td>
-            </tr>
-            <tr>
-              <td>Unique Value</td>
-              <td>[ TBA — what makes Life Gacha! unique ]</td>
-            </tr>
-            <tr>
               <td>Genre</td>
-              <td>[ TBA ]</td>
+              <td>Turn-Based, Rogue-like</td>
             </tr>
             <tr>
-              <td>Expected Release</td>
-              <td>[ TBA ]</td>
+              <td>Dimension</td>
+              <td>2D</td>
             </tr>
             <tr>
-              <td>Software</td>
-              <td>
-                <span class="tag">[ TBA ]</span>
-              </td>
+              <td>Resolution</td>
+              <td>1920 × 1080p</td>
+            </tr>
+            <tr>
+              <td>Platform</td>
+              <td>PC</td>
+            </tr>
+            <tr>
+              <td>Game Engine</td>
+              <td>Unreal Engine</td>
+            </tr>
+            <tr>
+              <td>Expected Playtime</td>
+              <td>8 – 15 minutes</td>
+            </tr>
+            <tr>
+              <td>Logline</td>
+              <td>Turn-based gacha where life itself is the currency — exchanged for weapons and survival.</td>
             </tr>
           </tbody>
         </table>
@@ -626,11 +666,52 @@
     </div>
 
     <!-- ================================================================
-     WHY NGILAI / WHY HORROR — matches PDF pages 5 & 6
+     GAMEPLAY — matches PDF page 3: three core mechanics
+     ================================================================ -->
+    <div style="background: linear-gradient(to bottom, #0a0a0a 0%, #111 100%);">
+      <div class="proj-section">
+        <div
+          class="section-header reveal"
+          style="text-align: left; margin-bottom: 3rem"
+        >
+          <span class="section-label">Core Mechanics</span>
+          <h2 style="font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem); color: var(--pure-white); letter-spacing: 0.06em;">Gameplay</h2>
+        </div>
+
+        <div class="proj-features-grid">
+          <div class="proj-feature-card reveal">
+            <h4>Turn-Based Life Gacha</h4>
+            <p>
+              The player takes turns fighting enemies using items gained from gacha rolls. Every roll, however,
+              costs the player a piece of their own life.
+            </p>
+          </div>
+
+          <div class="proj-feature-card reveal">
+            <h4>Aging Visual</h4>
+            <p>
+              The player's appearance changes according to their remaining life. The more they spend on the
+              gacha, the more visibly they age — and the closer they get to losing everything.
+            </p>
+          </div>
+
+          <div class="proj-feature-card reveal">
+            <h4>Rest Room</h4>
+            <p>
+              Players can rest to recover HP, but doing so costs them life in return — there is no safe way
+              to recover without paying a price.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+     WHY LIFE GACHA / VISUAL & DESIGN — matches PDF pages 4 & 5
      ================================================================ -->
     <div
       style="
-        background: linear-gradient(to bottom, #0a0a0a 0%, #111 100%);
+        background: linear-gradient(to bottom, #111 0%, #0a0a0a 100%);
         padding: 6rem 0;
       "
     >
@@ -644,41 +725,95 @@
 
         <div class="proj-why-grid">
           <div class="proj-why-block reveal">
-            <h3>Why "Life Gacha!"?</h3>
-            <ul>
-              <li>
-                [ Replace with the story behind the game's concept and name ]
-              </li>
-              <li>
-                [ Add the inspiration or theme the team wanted to explore ]
-              </li>
-              <li>[ Describe what the game is trying to say or achieve ]</li>
-            </ul>
+            <h3>Unique Point</h3>
+            <div class="proj-callout">
+              <p>
+                The player does not spend normal money, coins, or mana — they spend their own lifespan to
+                roll the gacha. This makes every roll meaningful: it can grant stronger items, but it also
+                brings the player closer to death.
+              </p>
+              <p style="margin-top: 1rem;">
+                Combined with funny cursed items, turn-based combat, and item-break mechanics, the game
+                creates a risk-reward experience that directly connects to its theme.
+              </p>
+            </div>
           </div>
 
           <div class="proj-why-block reveal">
-            <h3>Why This Genre?</h3>
+            <h3>Visual &amp; Design</h3>
             <ul>
-              <li>
-                [ Replace with the team's reasoning for the chosen genre ]
-              </li>
-              <li>[ Add market research or personal motivation ]</li>
-              <li>
-                [ Describe what makes this genre a good fit for the team ]
-              </li>
+              <li>High contrast colors</li>
+              <li>Stronger shape language</li>
+              <li>Stylized character and environment design</li>
+              <li>Custom-made audio, produced using BandLab</li>
             </ul>
           </div>
         </div>
 
-        <!-- Software used -->
+        <!-- Software used — marquee, mirrors index.html -->
         <div class="proj-software reveal">
-          <h3>Tools & Software</h3>
-          <div class="proj-software-logos">
-            <span class="proj-software-tag">[ TBA ]</span>
-          </div>
+          <h3>Tools &amp; Software</h3>
         </div>
       </div>
     </div>
+
+    <!-- SOFTWARE MARQUEE — mirrors index.html marquee structure -->
+    <section class="proj-marquee-section">
+      <div class="marquee-track-wrap">
+        <div class="marquee-track">
+          <div class="marquee-item">
+            <img src="./assets/software logo/illustrator_logo.png" alt="Illustrator" />
+            <span class="marquee-item-name">Adobe Illustrator</span>
+          </div>
+          <div class="marquee-item">
+            <img src="./assets/software logo/clipstudiopaint_logo.png" alt="Clip Studio Paint" />
+            <span class="marquee-item-name">Clip Studio Paint</span>
+          </div>
+          <div class="marquee-item">
+            <img src="./assets/software logo/capcut_logo.png" alt="Capcut" />
+            <span class="marquee-item-name">Capcut</span>
+          </div>
+          <div class="marquee-item">
+            <img src="./assets/software logo/unreal_engine_logo_white.png" alt="Unreal Engine" />
+            <span class="marquee-item-name">Unreal Engine</span>
+          </div>
+          <div class="marquee-item">
+            <img src="./assets/software logo/filmora_logo.png" alt="Filmora" />
+            <span class="marquee-item-name">Filmora</span>
+          </div>
+          <div class="marquee-item">
+            <img src="./assets/software logo/bandlab_logo.png" alt="Bandlab" />
+            <span class="marquee-item-name">BandLab</span>
+          </div>
+
+          <!-- duplicate set for the scrolling loop -->
+          <div class="marquee-item">
+            <img src="./assets/software logo/illustrator_logo.png" alt="Illustrator" />
+            <span class="marquee-item-name">Adobe Illustrator</span>
+          </div>
+          <div class="marquee-item">
+            <img src="./assets/software logo/clipstudiopaint_logo.png" alt="Clip Studio Paint" />
+            <span class="marquee-item-name">Clip Studio Paint</span>
+          </div>
+          <div class="marquee-item">
+            <img src="./assets/software logo/capcut_logo.png" alt="Capcut" />
+            <span class="marquee-item-name">Capcut</span>
+          </div>
+          <div class="marquee-item">
+            <img src="./assets/software logo/unreal_engine_logo_white.png" alt="Unreal Engine" />
+            <span class="marquee-item-name">Unreal Engine</span>
+          </div>
+          <div class="marquee-item">
+            <img src="./assets/software logo/filmora_logo.png" alt="Filmora" />
+            <span class="marquee-item-name">Filmora</span>
+          </div>
+          <div class="marquee-item">
+            <img src="./assets/software logo/bandlab_logo.png" alt="Bandlab" />
+            <span class="marquee-item-name">BandLab</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- ================================================================
      CTA — follow + back
