@@ -600,7 +600,7 @@ h4 {
   position: absolute;
   inset: 0;
   background: #000000;
-  opacity: 0.5; /* this is your "50% transparency" — lower = lighter, higher = darker */
+  opacity: 0.25; /* this is your "50% transparency" — lower = lighter, higher = darker */
   pointer-events: none; /* lets clicks pass through to the image underneath */
 }
 
