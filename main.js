@@ -92,6 +92,28 @@ document.addEventListener("DOMContentLoaded", () => {
     slideCount: 4,
   });
 
+   /* ----------------------------------------------------------
+    NGILAI CAROUSEL (ngilai.html)
+---------------------------------------------------------- */
+   initCarousel({
+     trackSelector: "#game1CarouselTrack",
+     dotsSelector: "#game1Dots",
+     prevBtn: "#game1Prev",
+     nextBtn: "#game1Next",
+     slideCount: 2, // Automatically handles just 2 images!
+   });
+
+/* ----------------------------------------------------------
+    LIFE GACHA CAROUSEL (lifegacha.html)
+---------------------------------------------------------- */
+   initCarousel({
+     trackSelector: "#game2CarouselTrack",
+     dotsSelector: "#game2Dots",
+     prevBtn: "#game2Prev",
+     nextBtn: "#game2Next",
+     slideCount: 2, // Automatically handles just 3 images!
+   });
+
   /* ----------------------------------------------------------
      PROJECTS CAROUSEL
   ---------------------------------------------------------- */
