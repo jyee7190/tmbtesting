@@ -159,6 +159,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* ----------------------------------------------------------
    Generic Carousel Factory
+   Now ratio-aware: the .carousel-wrap height adapts to each
+   slide's own image aspect ratio (portrait posters, landscape
+   group photos, etc. all display correctly with no cropping
+   distortion).
 ---------------------------------------------------------- */
 function initCarousel({
   trackSelector,
@@ -174,6 +178,9 @@ function initCarousel({
 
   if (!track) return;
 
+  // The wrap is the carousel's direct parent (has class "carousel-wrap")
+  const wrap = track.closest(".carousel-wrap");
+
   let current = 0;
 
   // Build dots
@@ -188,6 +195,29 @@ function initCarousel({
     }
   }
 
+  // Resize the wrap's height to match the active slide's image ratio
+  function updateHeight() {
+    if (!wrap) return;
+    const activeSlide = track.children[current];
+    if (!activeSlide) return;
+    const img = activeSlide.querySelector("img");
+    if (!img) return;
+
+    const setHeightFromImg = () => {
+      const wrapWidth = wrap.offsetWidth;
+      const ratio = img.naturalHeight / img.naturalWidth; // h/w
+      if (ratio > 0) {
+        wrap.style.height = `${wrapWidth * ratio}px`;
+      }
+    };
+
+    if (img.complete && img.naturalWidth) {
+      setHeightFromImg();
+    } else {
+      img.addEventListener("load", setHeightFromImg, { once: true });
+    }
+  }
+
   function goTo(n) {
     current = (n + slideCount) % slideCount;
     track.style.transform = `translateX(-${current * 100}%)`;
@@ -196,10 +226,17 @@ function initCarousel({
         .querySelectorAll(".carousel-dot")
         .forEach((d, i) => d.classList.toggle("active", i === current));
     }
+    updateHeight();
   }
 
   prev && prev.addEventListener("click", () => goTo(current - 1));
   next && next.addEventListener("click", () => goTo(current + 1));
+
+  // Re-measure on window resize so height stays correct responsively
+  window.addEventListener("resize", () => updateHeight());
+
+  // Set initial height once the first image is ready
+  updateHeight();
 
   // Auto-advance every 5s
   setInterval(() => goTo(current + 1), 5000);
