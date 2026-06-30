@@ -238,6 +238,29 @@
         line-height: 1.8;
       }
 
+      .proj-exhibition-quote {
+        margin-top: 1.5rem;
+        padding: 1.25rem 1.5rem;
+        border-left: 2px solid var(--border-glow);
+        background: rgba(255, 255, 255, 0.02);
+      }
+      .proj-exhibition-quote p {
+        font-style: italic;
+        color: var(--white-dim);
+        font-size: 0.95rem;
+        line-height: 1.7;
+        margin: 0;
+      }
+      .proj-exhibition-quote cite {
+        display: block;
+        margin-top: 0.75rem;
+        font-style: normal;
+        font-family: var(--font-heading);
+        font-size: 0.7rem;
+        letter-spacing: 0.1rem;
+        color: var(--grey-muted);
+      }
+
       /* ── SCOPE TABLE ── */
       .proj-scope-bg {
         background: linear-gradient(
@@ -726,7 +749,7 @@
           <!-- Left: exhibition poster -->
           <div class="reveal">
             <div class="carousel-wrap">
-              <div class="carousel-track" id="game1CarouselTrack">
+              <div class="carousel-track" id="aboutCarouselTrack">
                 <div class="carousel-slide">
                   <img
                     src="./assets/imine/imine poster.jpg"
@@ -742,20 +765,20 @@
               </div>
               <button
                 class="carousel-btn prev"
-                id="game1Prev"
+                id="aboutPrev"
                 aria-label="Previous"
               >
                 &#8592;
               </button>
               <button
                 class="carousel-btn next"
-                id="game1Next"
+                id="aboutNext"
                 aria-label="Next"
               >
                 &#8594;
               </button>
             </div>
-            <div class="carousel-dots" id="game1Dots"></div>
+            <div class="carousel-dots" id="aboutDots"></div>
           </div>
 
           <!-- Right: text -->
@@ -780,6 +803,31 @@
               players, industry peers, and academics — an important milestone in
               the studio's development journey.
             </p>
+
+            <blockquote class="proj-exhibition-quote">
+              <p>
+                “Program ini memberi peluang kepada peserta untuk mendedahkan diri
+                dalam industri pembangunan permainan, berkongsi idea kreatif serta
+                membina jaringan hubungan profesional dalam bidang game
+                development.”
+              </p>
+              <cite>— Muhammad Lutfi Hazim Zulkharnane, TMB Studio (UMS)</cite>
+            </blockquote>
+
+            <p style="margin-top: 1.25rem;">
+              TMB Studio's participation at IMINE 2.0 was also featured in local
+              press coverage of UMS students' achievements at the exhibition.
+            </p>
+
+            <a
+              href="https://sabahnews.com.my/ums-raih-empat-pingat-di-imine-2-0-inovasi-pelajar-tarik-perhatian-industri/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="proj-hero-back"
+              style="display: inline-block; margin-top: 0.75rem;"
+            >
+              Read the Full Article &nbsp;&#8594;
+            </a>
           </div>
         </div>
       </div>
